@@ -1,0 +1,813 @@
+{
+  "analysis_type": "C++ File Structure and Data Members Analysis",
+  "analysis_timestamp": "2025-10-14T06:31:50.561Z",
+  "codebase_overview": {
+    "total_files": 11,
+    "header_files": 5,
+    "implementation_files": 6,
+    "primary_purpose": "Financial timestamp processing and lexical analysis system",
+    "architecture_pattern": "Factory pattern with specialized lexicon analyzers"
+  },
+  "detailed_file_analysis": [
+    {
+      "file_name": "TemporalLexicalAnalyzer.hpp",
+      "file_type": "Abstract Base Class Header",
+      "structural_components": {
+        "enumerations": [
+          {
+            "name": "TimestampTokenType",
+            "type": "enum class",
+            "member_count": 23,
+            "categories": {
+              "core_temporal": [
+                "TOKEN_YEAR_DIGITS", "TOKEN_MONTH_DIGITS", "TOKEN_DAY_DIGITS",
+                "TOKEN_HOUR_DIGITS", "TOKEN_MINUTE_DIGITS", "TOKEN_SECOND_DIGITS",
+                "TOKEN_MICROSECOND_DIGITS"
+              ],
+              "separators": [
+                "TOKEN_HYPHEN_SEPARATOR", "TOKEN_COLON_SEPARATOR",
+                "TOKEN_DECIMAL_POINT", "TOKEN_TIME_SEPARATOR"
+              ],
+              "contextual": [
+                "TOKEN_AM_PM_SUFFIX", "TOKEN_TIMEZONE_ABBREV", "TOKEN_TRADING_SESSION",
+                "TOKEN_ERA_INDICATOR", "TOKEN_ORDINAL_SUFFIX", "TOKEN_MONTH_ABBREV",
+                "TOKEN_DAY_ABBREV", "TOKEN_TIMEZONE_OFFSET"
+              ],
+              "validation": [
+                "TOKEN_VALID_SEQUENCE", "TOKEN_INVALID_SEQUENCE", "TOKEN_UNKNOWN"
+              ]
+            }
+          }
+        ],
+        "structures": [
+          {
+            "name": "TimestampToken",
+            "data_members": [
+              {
+                "name": "type",
+                "type": "TimestampTokenType",
+                "purpose": "Classification of token type"
+              },
+              {
+                "name": "value",
+                "type": "std::string",
+                "purpose": "Actual string value of the token"
+              },
+              {
+                "name": "position",
+                "type": "size_t",
+                "purpose": "Character position in original input string"
+              },
+              {
+                "name": "confidence",
+                "type": "double",
+                "purpose": "Confidence score for token recognition (0.0-1.0)"
+              }
+            ],
+            "member_functions": [
+              {
+                "name": "TimestampToken()",
+                "type": "default_constructor",
+                "purpose": "Initialize token as UNKNOWN type"
+              },
+              {
+                "name": "TimestampToken(TimestampTokenType, const std::string&, size_t, double)",
+                "type": "parameterized_constructor",
+                "purpose": "Create token with specific type, value, position, and confidence"
+              },
+              {
+                "name": "toString()",
+                "type": "const_member_function",
+                "return_type": "std::string",
+                "purpose": "Convert token to human-readable string format"
+              }
+            ]
+          },
+          {
+            "name": "TemporalPattern",
+            "data_members": [
+              {
+                "name": "name",
+                "type": "std::string",
+                "purpose": "Unique identifier for the pattern"
+              },
+              {
+                "name": "regex_pattern",
+                "type": "std::string",
+                "purpose": "Regular expression for pattern recognition"
+              },
+              {
+                "name": "expected_sequence",
+                "type": "std::vector<TimestampTokenType>",
+                "purpose": "Expected sequence of token types for validation"
+              },
+              {
+                "name": "format_type",
+                "type": "std::string",
+                "purpose": "Type of timestamp format (ISO8601, UNIX, TRADING_SESSION)"
+              },
+              {
+                "name": "base_confidence",
+                "type": "double",
+                "purpose": "Base confidence level for pattern matching"
+              },
+              {
+                "name": "description",
+                "type": "std::string",
+                "purpose": "Human-readable description of the pattern"
+              }
+            ],
+            "member_functions": [
+              {
+                "name": "TemporalPattern()",
+                "type": "default_constructor",
+                "purpose": "Initialize with default confidence of 0.5"
+              },
+              {
+                "name": "TemporalPattern(const std::string&, const std::string&, const std::vector<TimestampTokenType>&, const std::string&, double, const std::string&)",
+                "type": "parameterized_constructor",
+                "purpose": "Complete constructor for pattern definition"
+              }
+            ]
+          }
+        ],
+        "classes": [
+          {
+            "name": "TemporalLexicalAnalyzer",
+            "inheritance": "Abstract base class (no inheritance)",
+            "data_members": [
+              {
+                "name": "tokens_",
+                "type": "std::vector<TimestampToken>",
+                "access": "protected",
+                "purpose": "Storage container for recognized tokens"
+              },
+              {
+                "name": "original_input_",
+                "type": "std::string",
+                "access": "protected",
+                "purpose": "Original input string being analyzed"
+              },
+              {
+                "name": "supported_patterns_",
+                "type": "std::vector<TemporalPattern>",
+                "access": "protected",
+                "purpose": "Collection of registered temporal patterns"
+              },
+              {
+                "name": "SUFFIX_PATTERNS",
+                "type": "static const std::unordered_map<std::string, TimestampTokenType>",
+                "access": "protected",
+                "purpose": "Static lookup table for AM/PM, era indicators, ordinal suffixes"
+              },
+              {
+                "name": "TIMEZONE_PATTERNS",
+                "type": "static const std::unordered_map<std::string, TimestampTokenType>",
+                "access": "protected",
+                "purpose": "Static lookup table for timezone abbreviations"
+              },
+              {
+                "name": "MONTH_PATTERNS",
+                "type": "static const std::unordered_map<std::string, TimestampTokenType>",
+                "access": "protected",
+                "purpose": "Static lookup table for month abbreviations"
+              },
+              {
+                "name": "SESSION_PATTERNS",
+                "type": "static const std::unordered_map<std::string, TimestampTokenType>",
+                "access": "protected",
+                "purpose": "Static lookup table for trading session identifiers"
+              }
+            ],
+            "member_functions": [
+              {
+                "name": "AnalyzeInput(const std::string&)",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "parameters": [
+                  {
+                    "name": "input",
+                    "type": "const std::string&",
+                    "purpose": "Input timestamp string to analyze"
+                  }
+                ],
+                "purpose": "Abstract method for input analysis - must be implemented by derived classes"
+              },
+              {
+                "name": "GetTokenSequence()",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "return_type": "std::vector<TimestampTokenType>",
+                "purpose": "Abstract method to get sequence of identified token types"
+              },
+              {
+                "name": "IsValidSequence()",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "return_type": "bool",
+                "purpose": "Abstract method to check if analyzed input represents valid sequence"
+              },
+              {
+                "name": "CalculateLexicalConfidence()",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "return_type": "double",
+                "purpose": "Abstract method to calculate lexical confidence score"
+              },
+              {
+                "name": "CalculateSemanticConfidence(uint64_t)",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "return_type": "double",
+                "parameters": [
+                  {
+                    "name": "parsed_value",
+                    "type": "uint64_t",
+                    "purpose": "Parsed timestamp value for semantic validation"
+                  }
+                ],
+                "purpose": "Abstract method to calculate semantic confidence based on meaning"
+              },
+              {
+                "name": "GetFormatType()",
+                "type": "pure_virtual_function",
+                "access": "public",
+                "return_type": "std::string",
+                "purpose": "Abstract method to get format type this analyzer handles"
+              },
+              {
+                "name": "GetTokens()",
+                "type": "const_member_function",
+                "access": "public",
+                "return_type": "const std::vector<TimestampToken>&",
+                "purpose": "Accessor method to get all recognized tokens"
+              },
+              {
+                "name": "GetOriginalInput()",
+                "type": "const_member_function",
+                "access": "public",
+                "return_type": "const std::string&",
+                "purpose": "Accessor method to get original input string"
+              },
+              {
+                "name": "ClearAnalysis()",
+                "type": "member_function",
+                "access": "public",
+                "purpose": "Reset analysis state for new input"
+              },
+              {
+                "name": "RegisterPattern(const TemporalPattern&)",
+                "type": "member_function",
+                "access": "public",
+                "parameters": [
+                  {
+                    "name": "pattern",
+                    "type": "const TemporalPattern&",
+                    "purpose": "Pattern to add to supported formats"
+                  }
+                ],
+                "purpose": "Register new temporal pattern for recognition"
+              },
+              {
+                "name": "GetSupportedPatterns()",
+                "type": "const_member_function",
+                "access": "public",
+                "return_type": "const std::vector<TemporalPattern>&",
+                "purpose": "Get list of supported patterns"
+              }
+            ],
+            "protected_helper_functions": [
+              {
+                "name": "TokenizeByPosition(const std::string&)",
+                "purpose": "Position-based tokenization algorithm"
+              },
+              {
+                "name": "ValidateTokenSequence(const std::vector<TimestampTokenType>&)",
+                "purpose": "Validate token sequence against expected pattern"
+              },
+              {
+                "name": "AddToken(TimestampTokenType, const std::string&, size_t, double)",
+                "purpose": "Add token to internal token list"
+              },
+              {
+                "name": "IsDigitRange(const std::string&, size_t, size_t)",
+                "purpose": "Check if substring contains only digits"
+              },
+              {
+                "name": "ParseIntSubstring(const std::string&, size_t, size_t)",
+                "purpose": "Safely parse integer from substring"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file_name": "TimestampLexiconFactory.hpp",
+      "file_type": "Factory Class Header",
+      "structural_components": {
+        "classes": [
+          {
+            "name": "TimestampLexiconFactory",
+            "type": "Static Factory Class",
+            "characteristics": [
+              "All constructors deleted (non-instantiable)",
+              "All methods are static",
+              "Runtime format registration support",
+              "Auto-detection capabilities"
+            ],
+            "static_factory_methods": [
+              {
+                "name": "CreateLexicon(const std::string&)",
+                "return_type": "Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>",
+                "parameters": [
+                  {
+                    "name": "format_name",
+                    "type": "const std::string&",
+                    "purpose": "Format identifier (UNIX, ISO8601, TRADING_SESSION)"
+                  }
+                ],
+                "purpose": "Create lexicon based on format name"
+              },
+              {
+                "name": "AutoDetectAndCreate(const std::string&)",
+                "return_type": "Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>",
+                "parameters": [
+                  {
+                    "name": "timestamp_string",
+                    "type": "const std::string&",
+                    "purpose": "Input timestamp string for format detection"
+                  }
+                ],
+                "purpose": "Auto-detect format and create appropriate lexicon"
+              },
+              {
+                "name": "CreateUnixLexicon()",
+                "return_type": "Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>",
+                "purpose": "Create Unix timestamp-specific lexicon"
+              },
+              {
+                "name": "CreateISO8601Lexicon()",
+                "return_type": "Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>",
+                "purpose": "Create ISO8601 timestamp-specific lexicon"
+              },
+              {
+                "name": "CreateTradingLexicon()",
+                "return_type": "Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>",
+                "purpose": "Create trading session timestamp-specific lexicon"
+              }
+            ],
+            "runtime_extension_methods": [
+              {
+                "name": "RegisterFormatType(const std::string&, std::function<...>)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "format_name",
+                    "type": "const std::string&",
+                    "purpose": "Unique identifier for custom format"
+                  },
+                  {
+                    "name": "creator_function",
+                    "type": "std::function<Result<std::unique_ptr<Validation::TemporalLexicalAnalyzer>>()>",
+                    "purpose": "Function that creates lexicons for this format"
+                  }
+                ],
+                "purpose": "Register custom format type at runtime"
+              },
+              {
+                "name": "UnregisterFormatType(const std::string&)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "format_name",
+                    "type": "const std::string&",
+                    "purpose": "Format type to remove"
+                  }
+                ],
+                "purpose": "Unregister custom format type"
+              }
+            ],
+            "utility_methods": [
+              {
+                "name": "GetSupportedFormats()",
+                "return_type": "std::vector<std::string>",
+                "purpose": "Get list of all supported format types"
+              },
+              {
+                "name": "IsFormatSupported(const std::string&)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "format_name",
+                    "type": "const std::string&",
+                    "purpose": "Format type to check"
+                  }
+                ],
+                "purpose": "Check if format type is supported"
+              }
+            ],
+            "private_helper_methods": [
+              {
+                "name": "CreateLexiconByType(const std::string&)",
+                "purpose": "Internal method to create lexicon based on normalized format type"
+              },
+              {
+                "name": "NormalizeFormatName(const std::string&)",
+                "purpose": "Normalize format name for consistent lookup"
+              },
+              {
+                "name": "IsLikelyISO8601Format(const std::string&)",
+                "purpose": "Detect if input appears to be ISO8601 format"
+              },
+              {
+                "name": "IsLikelyUnixFormat(const std::string&)",
+                "purpose": "Detect if input appears to be Unix timestamp format"
+              },
+              {
+                "name": "IsLikelyTradingFormat(const std::string&)",
+                "purpose": "Detect if input appears to be trading timestamp format"
+              }
+            ],
+            "static_data_members": [
+              {
+                "name": "FORMAT_TYPE_MAP",
+                "type": "const std::unordered_map<std::string, std::string>",
+                "access": "private",
+                "purpose": "Static mapping for different naming conventions"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "file_name": "UnixTimestampLexicon.hpp",
+      "file_type": "Concrete Implementation Header",
+      "structural_components": {
+        "classes": [
+          {
+            "name": "UnixTimestampLexicon",
+            "inheritance": "public TemporalLexicalAnalyzer",
+            "data_members": [
+              {
+                "name": "config_",
+                "type": "UnixTimestampConfiguration_DTO",
+                "access": "private",
+                "purpose": "Configuration parameters from DTO (no hardcoded constants)"
+              }
+            ],
+            "runtime_extension_methods": [
+              {
+                "name": "RegisterCustomPattern(const std::string&, const std::string&, double, const std::string&)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "const std::string&",
+                    "purpose": "Unique identifier for the pattern"
+                  },
+                  {
+                    "name": "regex",
+                    "type": "const std::string&",
+                    "purpose": "Regular expression for timestamp recognition"
+                  },
+                  {
+                    "name": "confidence",
+                    "type": "double",
+                    "purpose": "Confidence score for this pattern (0.0-1.0)"
+                  },
+                  {
+                    "name": "description",
+                    "type": "const std::string&",
+                    "purpose": "Human-readable description"
+                  }
+                ],
+                "purpose": "Add custom Unix timestamp pattern at runtime"
+              },
+              {
+                "name": "UnregisterPattern(const std::string&)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "type": "const std::string&",
+                    "purpose": "Pattern name to remove"
+                  }
+                ],
+                "purpose": "Remove custom pattern at runtime"
+              },
+              {
+                "name": "GetActivePatterns()",
+                "return_type": "std::vector<std::pair<std::string, std::string>>",
+                "purpose": "Get list of currently active patterns"
+              }
+            ],
+            "static_factory_methods": [
+              {
+                "name": "Create(const UnixTimestampConfiguration_DTO&)",
+                "return_type": "Result<std::unique_ptr<UnixTimestampLexicon>>",
+                "parameters": [
+                  {
+                    "name": "config",
+                    "type": "const UnixTimestampConfiguration_DTO&",
+                    "purpose": "Configuration DTO for lexicon setup"
+                  }
+                ],
+                "purpose": "Static factory method with configuration DTO"
+              },
+              {
+                "name": "CreateInstance(const UnixTimestampConfiguration_DTO&)",
+                "return_type": "std::unique_ptr<UnixTimestampLexicon>",
+                "parameters": [
+                  {
+                    "name": "config",
+                    "type": "const UnixTimestampConfiguration_DTO&",
+                    "purpose": "Configuration DTO for lexicon setup"
+                  }
+                ],
+                "purpose": "Simple static factory method"
+              },
+              {
+                "name": "CreateWithCustomPatterns(const UnixTimestampConfiguration_DTO&)",
+                "return_type": "Result<std::unique_ptr<UnixTimestampLexicon>>",
+                "parameters": [
+                  {
+                    "name": "baseConfig",
+                    "type": "const UnixTimestampConfiguration_DTO&",
+                    "purpose": "Base configuration DTO"
+                  }
+                ],
+                "purpose": "Factory method for runtime-extensible lexicon"
+              }
+            ],
+            "legacy_constructors": [
+              {
+                "name": "UnixTimestampLexicon()",
+                "type": "default_constructor",
+                "purpose": "Default constructor"
+              },
+              {
+                "name": "UnixTimestampLexicon(bool, uint32_t, uint64_t, uint64_t)",
+                "type": "parameterized_constructor",
+                "parameters": [
+                  {
+                    "name": "strict",
+                    "type": "bool",
+                    "purpose": "Strict parsing mode"
+                  },
+                  {
+                    "name": "max_frac",
+                    "type": "uint32_t",
+                    "purpose": "Maximum fractional digits"
+                  },
+                  {
+                    "name": "range_start",
+                    "type": "uint64_t",
+                    "purpose": "Start of valid range"
+                  },
+                  {
+                    "name": "range_end",
+                    "type": "uint64_t",
+                    "purpose": "End of valid range"
+                  }
+                ],
+                "purpose": "Legacy constructor with individual parameters"
+              }
+            ],
+            "override_methods": [
+              {
+                "name": "AnalyzeInput(const std::string&)",
+                "type": "virtual_override",
+                "parameters": [
+                  {
+                    "name": "input",
+                    "type": "const std::string&",
+                    "purpose": "Input string to analyze"
+                  }
+                ],
+                "purpose": "Unix-specific input analysis implementation"
+              },
+              {
+                "name": "GetTokenSequence()",
+                "type": "virtual_override",
+                "return_type": "std::vector<TimestampTokenType>",
+                "purpose": "Get Unix-specific token sequence"
+              },
+              {
+                "name": "IsValidSequence()",
+                "type": "virtual_override",
+                "return_type": "bool",
+                "purpose": "Check if input is valid Unix timestamp format"
+              },
+              {
+                "name": "CalculateLexicalConfidence()",
+                "type": "virtual_override",
+                "return_type": "double",
+                "purpose": "Calculate lexical confidence for Unix format"
+              },
+              {
+                "name": "CalculateSemanticConfidence(uint64_t)",
+                "type": "virtual_override",
+                "return_type": "double",
+                "parameters": [
+                  {
+                    "name": "parsed_value",
+                    "type": "uint64_t",
+                    "purpose": "Parsed timestamp microseconds"
+                  }
+                ],
+                "purpose": "Calculate semantic confidence based on timestamp value"
+              },
+              {
+                "name": "GetFormatType()",
+                "type": "virtual_override",
+                "return_type": "std::string",
+                "purpose": "Return \"UNIX\" as format type"
+              }
+            ],
+            "unix_specific_methods": [
+              {
+                "name": "IsUnixTimestamp()",
+                "return_type": "bool",
+                "purpose": "Check if input represents pure Unix timestamp"
+              },
+              {
+                "name": "GetDigitCharacteristics()",
+                "return_type": "std::pair<bool, size_t>",
+                "purpose": "Get Unix timestamp digit characteristics"
+              },
+              {
+                "name": "IsReasonableUnixRange(uint64_t)",
+                "return_type": "bool",
+                "parameters": [
+                  {
+                    "name": "value",
+                    "type": "uint64_t",
+                    "purpose": "Numeric value to validate"
+                  }
+                ],
+                "purpose": "Check if Unix timestamp is within reasonable range"
+              }
+            ],
+            "private_helper_methods": [
+              {
+                "name": "IsConfigurationValid()",
+                "return_type": "bool",
+                "purpose": "Validate configuration parameters"
+              },
+              {
+                "name": "RegisterDefaultPatterns()",
+                "purpose": "Register standard Unix timestamp patterns"
+              },
+              {
+                "name": "RegisterUnixPattern(const std::string&, const std::string&, double, const std::string&)",
+                "purpose": "Register individual Unix pattern"
+              }
+            ],
+            "configuration_accessors": [
+              {
+                "name": "GetEpochStart()",
+                "return_type": "uint64_t",
+                "purpose": "Get epoch start time from configuration"
+              },
+              {
+                "name": "GetReasonableEnd()",
+                "return_type": "uint64_t",
+                "purpose": "Get reasonable end time from configuration"
+              },
+              {
+                "name": "GetMinDigits()",
+                "return_type": "size_t",
+                "purpose": "Get minimum digits from configuration"
+              },
+              {
+                "name": "GetOptimalDigits()",
+                "return_type": "size_t",
+                "purpose": "Get optimal digits from configuration"
+              },
+              {
+                "name": "GetMaxDigits()",
+                "return_type": "size_t",
+                "purpose": "Get maximum digits from configuration"
+              },
+              {
+                "name": "GetWeightPureDigits()",
+                "return_type": "double",
+                "purpose": "Get weight for pure digits from configuration"
+              },
+              {
+                "name": "GetWeightOptimalLength()",
+                "return_type": "double",
+                "purpose": "Get weight for optimal length from configuration"
+              },
+              {
+                "name": "GetWeightRangeValid()",
+                "return_type": "double",
+                "purpose": "Get weight for range validation from configuration"
+              },
+              {
+                "name": "GetWeightParseSuccess()",
+                "return_type": "double",
+                "purpose": "Get weight for parse success from configuration"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "architecture_insights": {
+    "design_patterns_used": [
+      {
+        "pattern": "Abstract Factory",
+        "implementation": "TimestampLexiconFactory creates specialized lexicon analyzers",
+        "benefits": "Centralized creation logic, easy to add new format types"
+      },
+      {
+        "pattern": "Template Method",
+        "implementation": "TemporalLexicalAnalyzer provides base algorithm with customizable steps",
+        "benefits": "Consistent analysis framework with format-specific specializations"
+      },
+      {
+        "pattern": "Strategy",
+        "implementation": "Different lexicon classes implement different timestamp parsing strategies",
+        "benefits": "Pluggable parsing algorithms for different timestamp formats"
+      }
+    ],
+    "configuration_management": {
+      "dto_driven_configuration": "All hardcoded values eliminated in favor of DTO-based configuration",
+      "runtime_extensibility": "Custom patterns can be registered at runtime",
+      "factory_method_compliance": "All classes implement static factory methods as per architecture requirements"
+    },
+    "cross_language_integration": {
+      "pod_structs": "TimestampToken and TemporalPattern are POD-compatible for marshaling",
+      "error_handling": "Result<T> pattern for safe error propagation across language boundaries",
+      "dll_export_patterns": "Static factory methods enable cross-language instantiation"
+    }
+  },
+  "data_member_analysis": {
+    "static_vs_instance": {
+      "static_members": [
+        "SUFFIX_PATTERNS (25 entries)",
+        "TIMEZONE_PATTERNS (16 entries)",
+        "MONTH_PATTERNS (24 entries)",
+        "SESSION_PATTERNS (12 entries)",
+        "FORMAT_TYPE_MAP (normalization mappings)"
+      ],
+      "instance_members": [
+        "tokens_ (dynamic token storage)",
+        "original_input_ (input string storage)",
+        "supported_patterns_ (runtime pattern collection)",
+        "config_ (DTO-based configuration)"
+      ]
+    },
+    "memory_characteristics": {
+      "small_data_structures": "TimestampToken (4 fields, ~40 bytes)",
+      "medium_data_structures": "TemporalPattern (6 fields, ~200 bytes)",
+      "large_data_structures": "std::vector containers for dynamic storage",
+      "static_constant_maps": "Pre-allocated lookup tables for performance"
+    },
+    "access_patterns": {
+      "public_interface": "Factory methods, analysis methods, accessor methods",
+      "protected_helpers": "Tokenization algorithms, validation logic",
+      "private_implementation": "Configuration accessors, pattern registration"
+    }
+  },
+  "method_analysis": {
+    "pure_virtual_functions": 5,
+    "factory_methods": 8,
+    "override_methods": 5,
+    "helper_methods": 12,
+    "accessor_methods": 9,
+    "static_methods": 15,
+    "total_methods_analyzed": 54,
+    "inheritance_hierarchy": {
+      "base_class": "TemporalLexicalAnalyzer (abstract)",
+      "derived_classes": [
+        "UnixTimestampLexicon",
+        "ISO8601TimestampLexicon",
+        "TradingTimestampLexicon"
+      ],
+      "factory_class": "TimestampLexiconFactory (static utility)"
+    }
+  },
+  "code_organization": {
+    "namespace_structure": [
+      "FinancialLogging (top-level domain)",
+      "FinancialLogging::Toolbox (core utilities)",
+      "FinancialLogging::Toolbox::Validation (analysis logic)",
+      "FinancialLogging::Toolbox::Factory (creation logic)"
+    ],
+    "file_organization": {
+      "headers": "Interface definitions and abstract base classes",
+      "implementations": "Concrete algorithm implementations",
+      "factories": "Creation and registration logic"
+    },
+    "separation_of_concerns": {
+      "interface_separation": "Pure virtual interfaces in headers",
+      "implementation_separation": "Concrete logic in .cpp files",
+      "configuration_separation": "DTO-driven configuration management"
+    }
+  }
+}

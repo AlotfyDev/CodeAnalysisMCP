@@ -1,0 +1,303 @@
+{
+  "report_type": "Codebase Entity Inventory",
+  "generated_at": "2025-10-14T06:14:18.496Z",
+  "total_files": 5,
+  "total_entities": 14,
+  "entities_by_type": {
+    "class": 3,
+    "function": 9,
+    "method": 2
+  },
+  "entities_by_file": {
+    "test.js": [
+      {
+        "type": "class",
+        "name": "TestClass",
+        "filePath": "test.js",
+        "lineNumber": 2,
+        "codeSnippet": "class TestClass {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "testFunction",
+        "filePath": "test.js",
+        "lineNumber": 12,
+        "codeSnippet": "function testFunction(param) {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      }
+    ],
+    "test.py": [
+      {
+        "type": "class",
+        "name": "TestClass",
+        "filePath": "test.py",
+        "lineNumber": 2,
+        "codeSnippet": "class TestClass:",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "__init__",
+        "filePath": "test.py",
+        "lineNumber": 3,
+        "codeSnippet": "def __init__(self, name):",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "test_method",
+        "filePath": "test.py",
+        "lineNumber": 6,
+        "codeSnippet": "def test_method(self):",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "test_function",
+        "filePath": "test.py",
+        "lineNumber": 9,
+        "codeSnippet": "def test_function(param):",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      }
+    ],
+    "test.cpp": [
+      {
+        "type": "class",
+        "name": "TestClass",
+        "filePath": "test.cpp",
+        "lineNumber": 2,
+        "codeSnippet": "class TestClass {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "name_",
+        "filePath": "test.cpp",
+        "lineNumber": 4,
+        "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "method",
+        "name": "name_",
+        "filePath": "test.cpp",
+        "lineNumber": 4,
+        "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "testMethod",
+        "filePath": "test.cpp",
+        "lineNumber": 5,
+        "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "method",
+        "name": "testMethod",
+        "filePath": "test.cpp",
+        "lineNumber": 5,
+        "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "testFunction",
+        "filePath": "test.cpp",
+        "lineNumber": 10,
+        "codeSnippet": "int testFunction(int param) {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      }
+    ],
+    "quality_test.js": [
+      {
+        "type": "function",
+        "name": "complexFunction",
+        "filePath": "quality_test.js",
+        "lineNumber": 3,
+        "codeSnippet": "function complexFunction(a, b, c) {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      },
+      {
+        "type": "function",
+        "name": "incompleteFunction",
+        "filePath": "quality_test.js",
+        "lineNumber": 20,
+        "codeSnippet": "function incompleteFunction() {",
+        "dependencies": [],
+        "securityRisks": [],
+        "qualityIssues": []
+      }
+    ]
+  },
+  "detailed_entities": [
+    {
+      "type": "class",
+      "name": "TestClass",
+      "filePath": "test.js",
+      "lineNumber": 2,
+      "codeSnippet": "class TestClass {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "testFunction",
+      "filePath": "test.js",
+      "lineNumber": 12,
+      "codeSnippet": "function testFunction(param) {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "class",
+      "name": "TestClass",
+      "filePath": "test.py",
+      "lineNumber": 2,
+      "codeSnippet": "class TestClass:",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "__init__",
+      "filePath": "test.py",
+      "lineNumber": 3,
+      "codeSnippet": "def __init__(self, name):",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "test_method",
+      "filePath": "test.py",
+      "lineNumber": 6,
+      "codeSnippet": "def test_method(self):",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "test_function",
+      "filePath": "test.py",
+      "lineNumber": 9,
+      "codeSnippet": "def test_function(param):",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "class",
+      "name": "TestClass",
+      "filePath": "test.cpp",
+      "lineNumber": 2,
+      "codeSnippet": "class TestClass {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "name_",
+      "filePath": "test.cpp",
+      "lineNumber": 4,
+      "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "method",
+      "name": "name_",
+      "filePath": "test.cpp",
+      "lineNumber": 4,
+      "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "testMethod",
+      "filePath": "test.cpp",
+      "lineNumber": 5,
+      "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "method",
+      "name": "testMethod",
+      "filePath": "test.cpp",
+      "lineNumber": 5,
+      "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "testFunction",
+      "filePath": "test.cpp",
+      "lineNumber": 10,
+      "codeSnippet": "int testFunction(int param) {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "complexFunction",
+      "filePath": "quality_test.js",
+      "lineNumber": 3,
+      "codeSnippet": "function complexFunction(a, b, c) {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "incompleteFunction",
+      "filePath": "quality_test.js",
+      "lineNumber": 20,
+      "codeSnippet": "function incompleteFunction() {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    }
+  ]
+}

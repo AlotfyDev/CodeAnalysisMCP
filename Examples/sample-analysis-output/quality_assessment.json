@@ -1,0 +1,16 @@
+{
+  "report_type": "Code Quality Assessment",
+  "generated_at": "2025-10-14T06:14:18.501Z",
+  "overall_quality_score": 195.825,
+  "quality_breakdown": {
+    "cyclomaticComplexity": 8,
+    "maintainabilityIndex": 855,
+    "technicalDebtHours": 0.7,
+    "duplicationPercentage": 0,
+    "testCoverage": 0
+  },
+  "quality_grade": "A (Excellent)",
+  "recommendations": [
+    "Code quality is within acceptable ranges"
+  ]
+}

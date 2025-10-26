@@ -1,0 +1,54 @@
+{
+  "file_path": "quality_test.js",
+  "analysis_timestamp": "2025-10-14T06:14:18.496Z",
+  "file_stats": {
+    "lines_of_code": 23,
+    "bytes": 574,
+    "language": "javascript"
+  },
+  "entities": [
+    {
+      "type": "function",
+      "name": "complexFunction",
+      "filePath": "quality_test.js",
+      "lineNumber": 3,
+      "codeSnippet": "function complexFunction(a, b, c) {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "incompleteFunction",
+      "filePath": "quality_test.js",
+      "lineNumber": 20,
+      "codeSnippet": "function incompleteFunction() {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "quality_test.js",
+      "to": "complexFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "quality_test.js",
+      "to": "incompleteFunction",
+      "type": "calls",
+      "confidence": 0.7
+    }
+  ],
+  "vulnerabilities": [],
+  "quality_metrics": {
+    "cyclomaticComplexity": 4,
+    "maintainabilityIndex": 171,
+    "technicalDebtHours": 0.7,
+    "duplicationPercentage": 0,
+    "testCoverage": 0
+  },
+  "code_snippet": "\n        // High complexity function\n        function complexFunction(a, b, c) {\n            if (a > 0) {\n                if (b > 0) {\n                    if (c > 0) {\n                        return a + b + c;\n                    } else {\n                        return b + c;\n                    }\n                } else {\n                    return c;\n                }\n            } else {\n                return 0;\n            }\n        }\n\n        // TODO: Fix this later\n        function incompl\n... (truncated)"
+}

@@ -1,0 +1,29 @@
+{
+  "report_type": "Executive Codebase Summary",
+  "generated_at": "2025-10-14T06:14:18.502Z",
+  "codebase_overview": {
+    "files_analyzed": 5,
+    "entities_discovered": 14,
+    "relationships_mapped": 20,
+    "vulnerabilities_found": 4
+  },
+  "key_findings": {
+    "security_posture": "Critical risk - 4 issues found",
+    "code_quality": "A (Excellent) (195.8/100)",
+    "architecture_complexity": "Low complexity - Simple codebase"
+  },
+  "files_analyzed": [
+    "test.js",
+    "test.py",
+    "test.cpp",
+    "vulnerable.js",
+    "quality_test.js"
+  ],
+  "report_files_generated": [
+    "entity_inventory.json",
+    "architecture_relationships.json",
+    "security_assessment.json",
+    "quality_assessment.json",
+    "[file]_analysis.json"
+  ]
+}

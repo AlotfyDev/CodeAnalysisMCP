@@ -1,0 +1,166 @@
+{
+  "file_path": "test.cpp",
+  "analysis_timestamp": "2025-10-14T06:14:18.458Z",
+  "file_stats": {
+    "lines_of_code": 15,
+    "bytes": 243,
+    "language": "cpp"
+  },
+  "entities": [
+    {
+      "type": "class",
+      "name": "TestClass",
+      "filePath": "test.cpp",
+      "lineNumber": 2,
+      "codeSnippet": "class TestClass {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "name_",
+      "filePath": "test.cpp",
+      "lineNumber": 4,
+      "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "method",
+      "name": "name_",
+      "filePath": "test.cpp",
+      "lineNumber": 4,
+      "codeSnippet": "TestClass(std::string name) : name_(name) {}",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "testMethod",
+      "filePath": "test.cpp",
+      "lineNumber": 5,
+      "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "method",
+      "name": "testMethod",
+      "filePath": "test.cpp",
+      "lineNumber": 5,
+      "codeSnippet": "std::string testMethod() { return \"hello\"; }",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    },
+    {
+      "type": "function",
+      "name": "testFunction",
+      "filePath": "test.cpp",
+      "lineNumber": 10,
+      "codeSnippet": "int testFunction(int param) {",
+      "dependencies": [],
+      "securityRisks": [],
+      "qualityIssues": []
+    }
+  ],
+  "relationships": [
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "testFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "testMethod",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "testMethod",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "testFunction",
+      "type": "calls",
+      "confidence": 0.7
+    }
+  ],
+  "vulnerabilities": [],
+  "quality_metrics": {
+    "cyclomaticComplexity": 1,
+    "maintainabilityIndex": 171,
+    "technicalDebtHours": 0,
+    "duplicationPercentage": 0,
+    "testCoverage": 0
+  },
+  "code_snippet": "\nclass TestClass {\npublic:\n    TestClass(std::string name) : name_(name) {}\n    std::string testMethod() { return \"hello\"; }\nprivate:\n    std::string name_;\n};\n\nint testFunction(int param) {\n    return param + 1;\n}\n\nint testVariable = 42;\n    "
+}

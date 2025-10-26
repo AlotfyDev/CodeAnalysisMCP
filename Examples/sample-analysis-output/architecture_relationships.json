@@ -1,0 +1,270 @@
+{
+  "report_type": "Architecture Relationship Analysis",
+  "generated_at": "2025-10-14T06:14:18.497Z",
+  "total_relationships": 20,
+  "relationships_by_type": {
+    "calls": 15,
+    "references": 5
+  },
+  "relationship_graph": {
+    "nodes": [
+      "test.js",
+      "testFunction",
+      "test.py",
+      "__init__",
+      "test_method",
+      "test_function",
+      "test.cpp",
+      "TestClass",
+      "name_",
+      "testMethod",
+      "quality_test.js",
+      "complexFunction",
+      "incompleteFunction"
+    ],
+    "edges": [
+      {
+        "source": "test.js",
+        "target": "testFunction",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.py",
+        "target": "__init__",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.py",
+        "target": "test_method",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.py",
+        "target": "test_function",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "references",
+        "confidence": 0.6
+      },
+      {
+        "source": "test.cpp",
+        "target": "testFunction",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "references",
+        "confidence": 0.6
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "TestClass",
+        "type": "references",
+        "confidence": 0.6
+      },
+      {
+        "source": "test.cpp",
+        "target": "name_",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "name_",
+        "type": "references",
+        "confidence": 0.6
+      },
+      {
+        "source": "test.cpp",
+        "target": "name_",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "name_",
+        "type": "references",
+        "confidence": 0.6
+      },
+      {
+        "source": "test.cpp",
+        "target": "testMethod",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "testMethod",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "test.cpp",
+        "target": "testFunction",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "quality_test.js",
+        "target": "complexFunction",
+        "type": "calls",
+        "confidence": 0.7
+      },
+      {
+        "source": "quality_test.js",
+        "target": "incompleteFunction",
+        "type": "calls",
+        "confidence": 0.7
+      }
+    ]
+  },
+  "detailed_relationships": [
+    {
+      "from": "test.js",
+      "to": "testFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.py",
+      "to": "__init__",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.py",
+      "to": "test_method",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.py",
+      "to": "test_function",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "testFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "TestClass",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "name_",
+      "type": "references",
+      "confidence": 0.6
+    },
+    {
+      "from": "test.cpp",
+      "to": "testMethod",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "testMethod",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "test.cpp",
+      "to": "testFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "quality_test.js",
+      "to": "complexFunction",
+      "type": "calls",
+      "confidence": 0.7
+    },
+    {
+      "from": "quality_test.js",
+      "to": "incompleteFunction",
+      "type": "calls",
+      "confidence": 0.7
+    }
+  ]
+}

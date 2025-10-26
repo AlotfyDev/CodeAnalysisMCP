@@ -1,0 +1,65 @@
+{
+  "file_path": "vulnerable.js",
+  "analysis_timestamp": "2025-10-14T06:14:18.494Z",
+  "file_stats": {
+    "lines_of_code": 13,
+    "bytes": 329,
+    "language": "javascript"
+  },
+  "entities": [],
+  "relationships": [],
+  "vulnerabilities": [
+    {
+      "type": "sql_injection",
+      "severity": "critical",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 3,
+        "column": 24
+      },
+      "description": "Potential SQL injection vulnerability",
+      "recommendation": "Use parameterized queries or prepared statements"
+    },
+    {
+      "type": "xss",
+      "severity": "high",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 6,
+        "column": 17
+      },
+      "description": "Potential XSS vulnerability",
+      "recommendation": "Sanitize user input and use innerText/textContent"
+    },
+    {
+      "type": "secrecy_leak",
+      "severity": "critical",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 12,
+        "column": 15
+      },
+      "description": "Potential secret exposure",
+      "recommendation": "Use environment variables or secure secret management"
+    },
+    {
+      "type": "insecure_random",
+      "severity": "medium",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 12,
+        "column": 23
+      },
+      "description": "Insecure random number generation",
+      "recommendation": "Use cryptographically secure random generators"
+    }
+  ],
+  "quality_metrics": {
+    "cyclomaticComplexity": 1,
+    "maintainabilityIndex": 171,
+    "technicalDebtHours": 0,
+    "duplicationPercentage": 0,
+    "testCoverage": 0
+  },
+  "code_snippet": "\n        // SQL Injection vulnerability\n        const query = \"SELECT * FROM users WHERE id = \" + userId;\n\n        // XSS vulnerability\n        element.innerHTML = userInput;\n\n        // Hardcoded secret\n        const apiKey = \"sk-123456789abcdef\";\n\n        // Insecure random\n        const token = Math.random().toString();\n    "
+}

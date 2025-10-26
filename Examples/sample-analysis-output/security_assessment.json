@@ -1,0 +1,64 @@
+{
+  "report_type": "Security Vulnerability Assessment",
+  "generated_at": "2025-10-14T06:14:18.500Z",
+  "total_vulnerabilities": 4,
+  "vulnerabilities_by_severity": {
+    "critical": 2,
+    "high": 1,
+    "medium": 1
+  },
+  "vulnerabilities_by_type": {
+    "sql_injection": 1,
+    "xss": 1,
+    "secrecy_leak": 1,
+    "insecure_random": 1
+  },
+  "max_severity_found": "critical",
+  "security_score": 69,
+  "detailed_vulnerabilities": [
+    {
+      "type": "sql_injection",
+      "severity": "critical",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 3,
+        "column": 24
+      },
+      "description": "Potential SQL injection vulnerability",
+      "recommendation": "Use parameterized queries or prepared statements"
+    },
+    {
+      "type": "xss",
+      "severity": "high",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 6,
+        "column": 17
+      },
+      "description": "Potential XSS vulnerability",
+      "recommendation": "Sanitize user input and use innerText/textContent"
+    },
+    {
+      "type": "secrecy_leak",
+      "severity": "critical",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 12,
+        "column": 15
+      },
+      "description": "Potential secret exposure",
+      "recommendation": "Use environment variables or secure secret management"
+    },
+    {
+      "type": "insecure_random",
+      "severity": "medium",
+      "location": {
+        "file": "vulnerable.js",
+        "line": 12,
+        "column": 23
+      },
+      "description": "Insecure random number generation",
+      "recommendation": "Use cryptographically secure random generators"
+    }
+  ]
+}
