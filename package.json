@@ -1,0 +1,29 @@
+{
+  "name": "codebase-insights",
+  "version": "0.1.0",
+  "description": "Enterprise Software Intelligence Platform - Advanced MCP server with 6 specialized analysis dimensions for comprehensive codebase analysis, dependency management, evolution tracking, database intelligence, performance profiling, clone detection, and documentation quality assessment",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "codebase-insights": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector build/index.js",
+    "test": "node test-simple.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "0.6.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.11.24",
+    "nyc": "^17.1.0",
+    "typescript": "^5.9.3"
+  }
+}
